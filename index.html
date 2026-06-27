@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>REGENSIFY — Regenerate What's Yours</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--sand:#faf5ec;--sand2:#f2e9d6;--sand3:#e8dcc4;--clay:#8B4513;--clay2:#a0522d;--clay3:#c8733a;--bark:#2c1a0e;--bark2:#4a2f1a;--moss:#3d5a3e;--cream:#fffdf7;--warm-gray2:#8a7660}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--bark)}
+.promo-bar{background:var(--clay);color:#fff;text-align:center;padding:10px 16px;font-size:12px;letter-spacing:.06em}
+nav{background:var(--cream);border-bottom:1px solid var(--sand3);padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:62px;position:sticky;top:0;z-index:100}
+.nav-logo{font-family:'Playfair Display',serif;font-size:18px;letter-spacing:.15em;color:var(--bark);font-weight:700;text-decoration:none}
+.nav-logo span{color:var(--clay3);font-family:'Inter',sans-serif;font-size:9px;display:block;letter-spacing:.25em;font-weight:400;margin-top:-2px}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-size:12px;color:var(--bark2);letter-spacing:.06em;text-decoration:none;cursor:pointer}
+.nav-links a:hover{color:var(--clay)}
+.nav-right{display:flex;align-items:center;gap:14px}
+.nav-cart-btn{background:var(--clay);color:#fff;padding:9px 20px;font-size:11px;letter-spacing:.1em;border:none;cursor:pointer;border-radius:2px;font-family:'Inter',sans-serif}
+.nav-cart-btn:hover{background:var(--clay2)}
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:460px}
+.hero-text{background:var(--sand2);padding:60px 48px;display:flex;flex-direction:column;justify-content:center}
+.hero-eyebrow{font-size:10px;letter-spacing:.22em;color:var(--clay3);text-transform:uppercase;margin-bottom:20px;font-weight:500}
+.hero-h1{font-family:'Playfair Display',serif;font-size:46px;line-height:1.1;color:var(--bark);font-weight:700;margin-bottom:18px}
+.hero-h1 em{color:var(--clay);font-style:italic}
+.hero-sub{font-size:14px;color:var(--bark2);line-height:1.8;margin-bottom:32px;max-width:320px;font-weight:300}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{background:var(--clay);color:#fff;padding:13px 28px;font-size:12px;letter-spacing:.1em;border:none;cursor:pointer;border-radius:2px;font-family:'Inter',sans-serif}
+.btn-primary:hover{background:var(--clay2)}
+.btn-ghost{background:transparent;color:var(--bark);padding:13px 28px;font-size:12px;letter-spacing:.1em;border:1.5px solid var(--sand3);cursor:pointer;border-radius:2px;font-family:'Inter',sans-serif}
+.btn-ghost:hover{border-color:var(--clay);color:var(--clay)}
+.hero-img{background:var(--sand3);overflow:hidden;position:relative}
+.hero-img img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-badge{position:absolute;bottom:24px;right:24px;background:var(--cream);padding:12px 16px;border-radius:3px;border-left:3px solid var(--clay)}
+.hero-badge-top{font-size:9px;color:var(--warm-gray2);letter-spacing:.12em;text-transform:uppercase;font-weight:500;margin-bottom:3px}
+.hero-badge-val{font-family:'Playfair Display',serif;font-size:16px;color:var(--bark);font-weight:700}
+.trust-strip{background:var(--bark);padding:20px 40px;display:grid;grid-template-columns:repeat(4,1fr)}
+.trust-item{text-align:center;padding:0 12px;border-right:.5px solid rgba(255,255,255,.1)}
+.trust-item:last-child{border-right:none}
+.trust-icon{font-size:20px;margin-bottom:6px}
+.trust-label{font-size:11px;color:#fff;letter-spacing:.08em;font-weight:500;margin-bottom:3px}
+.trust-sub{font-size:10px;color:rgba(255,255,255,.45)}
+.section{padding:60px 40px}
+.section-eyebrow{font-size:10px;letter-spacing:.22em;color:var(--clay3);text-transform:uppercase;margin-bottom:10px;font-weight:500}
+.section-title{font-family:'Playfair Display',serif;font-size:30px;color:var(--bark);font-weight:700;margin-bottom:6px}
+.section-sub{font-size:13px;color:var(--warm-gray2);margin-bottom:32px;line-height:1.7;max-width:480px}
+.cat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.cat-card{background:var(--sand2);border-radius:4px;padding:24px 12px;text-align:center;cursor:pointer;border:1.5px solid transparent;transition:border-color .15s}
+.cat-card:hover,.cat-card.active{border-color:var(--clay)}
+.cat-icon{font-size:26px;margin-bottom:10px}
+.cat-name{font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--bark);margin-bottom:3px}
+.cat-count{font-size:10px;color:var(--warm-gray2)}
+.products-section{padding:0 40px 60px}
+.products-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
+.products-title{font-family:'Playfair Display',serif;font-size:24px;color:var(--bark);font-weight:700}
+.view-all{font-size:11px;color:var(--clay);text-decoration:underline;cursor:pointer}
+.prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.prod-card{background:var(--sand2);border-radius:4px;overflow:hidden;cursor:pointer;border:1.5px solid transparent;transition:border-color .2s}
+.prod-card:hover{border-color:var(--clay3)}
+.prod-img-wrap{position:relative;height:180px;background:var(--sand3);overflow:hidden}
+.prod-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .4s;display:block}
+.prod-card:hover .prod-img-wrap img{transform:scale(1.06)}
+.prod-badge{position:absolute;top:10px;left:10px;background:var(--clay);color:#fff;font-size:9px;padding:3px 9px;border-radius:2px;letter-spacing:.08em;font-weight:500}
+.prod-badge.green{background:var(--moss)}
+.prod-badge.amber{background:#b5650d}
+.prod-body{padding:14px 14px 16px}
+.prod-cat{font-size:9px;color:var(--clay3);letter-spacing:.14em;text-transform:uppercase;margin-bottom:5px;font-weight:500}
+.prod-name{font-family:'Playfair Display',serif;font-size:14px;color:var(--bark);font-weight:700;line-height:1.35;margin-bottom:8px;min-height:38px}
+.prod-ingr{font-size:10px;color:var(--warm-gray2);line-height:1.6;margin-bottom:10px;min-height:32px}
+.prod-footer{display:flex;align-items:center;justify-content:space-between}
+.prod-price{font-size:15px;color:var(--clay);font-weight:600}
+.prod-add{background:var(--bark);color:#fff;border:none;font-size:10px;padding:7px 12px;border-radius:2px;cursor:pointer;font-family:'Inter',sans-serif;letter-spacing:.06em}
+.prod-add:hover{background:var(--clay)}
+.best-banner{margin:0 40px 60px;background:var(--clay);border-radius:4px;padding:40px 48px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center}
+.best-left .eyebrow{font-size:10px;color:rgba(255,255,255,.55);letter-spacing:.2em;text-transform:uppercase;margin-bottom:10px}
+.best-left h3{font-family:'Playfair Display',serif;font-size:26px;color:#fff;font-weight:700;margin-bottom:12px;line-height:1.2}
+.best-left p{font-size:13px;color:rgba(255,255,255,.75);line-height:1.75;margin-bottom:20px;max-width:400px}
+.best-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.best-tag{background:rgba(255,255,255,.15);color:#fff;font-size:10px;padding:4px 12px;border-radius:2px}
+.best-cta{background:#fff;color:var(--clay);font-size:11px;font-weight:600;padding:11px 24px;border:none;border-radius:2px;cursor:pointer;font-family:'Inter',sans-serif;letter-spacing:.08em}
+.best-right{text-align:center;flex-shrink:0}
+.best-right img{width:130px;height:160px;object-fit:cover;border-radius:3px;margin-bottom:10px;display:block}
+.best-price{font-size:12px;color:rgba(255,255,255,.65)}
+.science{background:var(--sand2);padding:60px 40px}
+.science-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:32px}
+.sci-card{background:var(--cream);border:1px solid var(--sand3);border-radius:4px;padding:20px}
+.sci-card h4{font-family:'Playfair Display',serif;font-size:15px;color:var(--bark);font-weight:700;margin-bottom:8px}
+.sci-card p{font-size:12px;color:var(--warm-gray2);line-height:1.65}
+.sci-pill{display:inline-block;background:var(--clay);color:#fff;font-size:9px;padding:2px 8px;border-radius:2px;letter-spacing:.06em;margin-bottom:10px;font-weight:500}
+.steps-section{padding:60px 40px}
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:32px}
+.step{padding:24px 20px;background:var(--sand2);border-radius:4px;border:1px solid var(--sand3)}
+.step-num{width:32px;height:32px;border-radius:50%;background:var(--clay);color:#fff;font-family:'Playfair Display',serif;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.step h4{font-size:13px;font-weight:600;color:var(--bark);margin-bottom:6px}
+.step p{font-size:11px;color:var(--warm-gray2);line-height:1.6}
+.bundles-section{padding:60px 40px;background:var(--sand2)}
+.bundle-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.bundle-card{background:var(--cream);border:1px solid var(--sand3);border-radius:4px;overflow:hidden;cursor:pointer;transition:border-color .15s}
+.bundle-card:hover{border-color:var(--clay3)}
+.bundle-card img{width:100%;height:160px;object-fit:cover;display:block}
+.bundle-body{padding:16px}
+.bundle-name{font-family:'Playfair Display',serif;font-size:15px;color:var(--bark);font-weight:700;margin-bottom:6px;line-height:1.3}
+.bundle-desc{font-size:11px;color:var(--warm-gray2);margin-bottom:12px;line-height:1.6}
+.bundle-footer{display:flex;align-items:center;justify-content:space-between}
+.bundle-price{font-size:15px;color:var(--clay);font-weight:600}
+.bundle-save{font-size:9px;background:var(--moss);color:#fff;padding:3px 9px;border-radius:2px;font-weight:500}
+.bundle-btn{font-size:10px;background:var(--clay);color:#fff;padding:8px 14px;border:none;border-radius:2px;cursor:pointer;font-family:'Inter',sans-serif;margin-top:12px;width:100%}
+.bundle-btn:hover{background:var(--clay2)}
+.services{background:var(--bark);padding:60px 40px}
+.services .section-eyebrow{color:rgba(255,255,255,.45)}
+.services .section-title{color:#fff}
+.services .section-sub{color:rgba(255,255,255,.5)}
+.svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px}
+.svc-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:28px;cursor:pointer;transition:border-color .15s}
+.svc-card:hover{border-color:var(--clay3)}
+.svc-badge{font-size:9px;color:var(--clay3);letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:12px}
+.svc-card h4{font-family:'Playfair Display',serif;font-size:18px;color:#fff;font-weight:700;margin-bottom:10px}
+.svc-card p{font-size:12px;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:16px}
+.svc-cta{font-size:11px;color:var(--clay3);letter-spacing:.06em;font-weight:500}
+.testimonial{background:var(--sand);padding:60px 40px;text-align:center}
+.test-stars{color:var(--clay3);font-size:16px;margin-bottom:16px;letter-spacing:4px}
+.test-quote{font-family:'Playfair Display',serif;font-size:22px;color:var(--bark);font-weight:400;font-style:italic;line-height:1.55;max-width:600px;margin:0 auto 16px}
+.test-author{font-size:11px;color:var(--warm-gray2);letter-spacing:.1em;font-weight:500}
+.newsletter{background:var(--bark2);padding:50px 40px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.nl-text h3{font-family:'Playfair Display',serif;font-size:22px;color:#fff;font-weight:700;margin-bottom:8px}
+.nl-text p{font-size:12px;color:rgba(255,255,255,.5);line-height:1.7}
+.nl-form{display:flex}
+.nl-form input{flex:1;padding:12px 16px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-right:none;color:#fff;font-size:12px;font-family:'Inter',sans-serif;outline:none}
+.nl-form input::placeholder{color:rgba(255,255,255,.3)}
+.nl-form button{background:var(--clay3);color:#fff;border:none;padding:12px 22px;font-size:11px;font-weight:500;letter-spacing:.08em;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap}
+footer{background:#1a0d05;padding:50px 40px 28px}
+.footer-grid{display:grid;grid-template-columns:2.5fr 1fr 1fr 1fr;gap:32px;margin-bottom:32px}
+.f-logo{font-family:'Playfair Display',serif;font-size:16px;color:#fff;letter-spacing:.15em;font-weight:700;margin-bottom:10px}
+.f-tagline{font-size:11px;color:rgba(255,255,255,.35);line-height:1.8;margin-bottom:16px}
+.social-row{display:flex;gap:8px}
+.social-btn{width:32px;height:32px;border:1px solid rgba(255,255,255,.15);border-radius:2px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:rgba(255,255,255,.4);font-size:11px;font-weight:600;text-decoration:none;transition:border-color .15s,color .15s}
+.social-btn:hover{border-color:var(--clay3);color:var(--clay3)}
+.footer-col h5{font-size:9px;color:rgba(255,255,255,.4);letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px;font-weight:500}
+.footer-col a{display:block;font-size:11px;color:rgba(255,255,255,.5);margin-bottom:9px;text-decoration:none;transition:color .15s}
+.footer-col a:hover{color:var(--clay3)}
+.footer-bottom{border-top:.5px solid rgba(255,255,255,.08);padding-top:20px;display:flex;justify-content:space-between;align-items:center}
+.footer-bottom p{font-size:10px;color:rgba(255,255,255,.25)}
+.payment-icons{display:flex;gap:8px}
+.pay-badge{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:3px;padding:3px 10px;font-size:9px;color:rgba(255,255,255,.3)}
+@media(max-width:768px){
+  nav{padding:0 20px}.nav-links{display:none}
+  .hero{grid-template-columns:1fr}.hero-img{height:240px}.hero-text{padding:36px 24px}.hero-h1{font-size:32px}
+  .trust-strip{grid-template-columns:1fr 1fr;padding:16px 24px}
+  .section,.products-section,.bundles-section,.services,.testimonial,.steps-section{padding:36px 24px}
+  .cat-grid{grid-template-columns:repeat(3,1fr)}
+  .prod-grid{grid-template-columns:repeat(2,1fr)}
+  .science-grid,.steps-grid{grid-template-columns:1fr 1fr}
+  .best-banner{grid-template-columns:1fr;margin:0 24px 40px;padding:28px 24px}
+  .best-right{display:none}
+  .bundle-row{grid-template-columns:1fr}
+  .svc-grid{grid-template-columns:1fr}
+  .newsletter{grid-template-columns:1fr;padding:36px 24px}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  footer{padding:36px 24px 24px}
+}
+</style>
+</head>
+<body>
+<div class="promo-bar">🌿 Use code <strong>SG10OFF</strong> for 10% off · Free shipping above SGD $50 · Made in Singapore</div>
+<nav>
+  <a class="nav-logo" href="#">REGENSIFY<span>Est. 2020 · Singapore</span></a>
+  <ul class="nav-links">
+    <li><a href="#products" onclick="filterCat('all')">All products</a></li>
+    <li><a href="#products" onclick="filterCat('hair')">Haircare</a></li>
+    <li><a href="#products" onclick="filterCat('body')">Bodycare</a></li>
+    <li><a href="#products" onclick="filterCat('eye')">Eyecare</a></li>
+    <li><a href="#bundles">Bundles</a></li>
+    <li><a href="#clinic">Clinic</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="nav-cart-btn">Cart (0)</button>
+  </div>
+</nav>
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow">Nature meets science · Made in Singapore</div>
+    <h1 class="hero-h1">Regenerate<br>what's <em>yours.</em></h1>
+    <p class="hero-sub">Clinical-grade actives rooted in botanical science. Paraben-free. Cruelty-free. Formulated to work.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Shop the range</button>
+      <button class="btn-ghost" onclick="window.open('https://www.regensify.com/pages/our-story','_blank')">Our story</button>
+    </div>
+  </div>
+  <div class="hero-img">
+    <img src="https://cdn.shopify.com/s/files/1/0719/2972/5125/files/Professional_Bundle_Set.jpg?v=1751208491" alt="Regensify Professional Bundle">
+    <div class="hero-badge">
+      <div class="hero-badge-top">⭐ Best seller</div>
+      <div class="hero-badge-val">#1 in haircare</div>
+    </div>
+  </div>
+</section>
+<div class="trust-strip">
+  <div class="trust-item"><div class="trust-icon">⚗️</div><div class="trust-label">Clinical actives</div><div class="trust-sub">Redensyl · Capixyl · Greyverse™</div></div>
+  <div class="trust-item"><div class="trust-icon">🌿</div><div class="trust-label">Clean formula</div><div class="trust-sub">Paraben-free · No artificial dyes</div></div>
+  <div class="trust-item"><div class="trust-icon">🏭</div><div class="trust-label">Made in Singapore</div><div class="trust-sub">US FDA-registered facility</div></div>
+  <div class="trust-item"><div class="trust-icon">🐰</div><div class="trust-label">Cruelty-free</div><div class="trust-sub">Ethical · No animal testing</div></div>
+</div>
+<section class="section" style="padding-bottom:16px">
+  <div class="section-eyebrow">Browse by concern</div>
+  <div class="section-title">Find your ritual</div>
+  <p class="section-sub">Every formula targets a specific need. Choose your focus.</p>
+  <div class="cat-grid">
+    <div class="cat-card active" id="cat-all" onclick="filterCat('all')"><div class="cat-icon">✨</div><div class="cat-name">All products</div><div class="cat-count">13 items</div></div>
+    <div class="cat-card" id="cat-hair" onclick="filterCat('hair')"><div class="cat-icon">💧</div><div class="cat-name">Haircare</div><div class="cat-count">7 items</div></div>
+    <div class="cat-card" id="cat-body" onclick="filterCat('body')"><div class="cat-icon">☀️</div><div class="cat-name">Bodycare</div><div class="cat-count">2 items</div></div>
+    <div class="cat-card" id="cat-eye" onclick="filterCat('eye')"><div class="cat-icon">👁️</div><div class="cat-name">Eyecare</div><div class="cat-count">1 item</div></div>
+    <div class="cat-card" id="cat-bundle" onclick="filterCat('bundle')"><div class="cat-icon">🎁</div><div class="cat-name">Bundles</div><div class="cat-count">4 items</div></div>
+  </div>
+</section>
+<section class="products-section" id="products" style="padding-top:32px">
+  <div class="products-header">
+    <div class="products-title" id="prod-section-title">All products</div>
+    <a class="view-all" href="https://www.regensify.com/collections/all-regensify-products" target="_blank">View all on store →</a>
+  </div>
+  <div class="prod-grid" id="prod-grid"></div>
+</section>
+<div class="best-banner">
+  <div class="best-left">
+    <div class="eyebrow">⭐ Best seller · SGD $8,935 in sales · 136 orders</div>
+    <h3>Reverse grey hair — naturally.</h3>
+    <p>Our #1 product. The Hair Melanin Booster Lotion combines Greyverse™, Darkenyl™ and MelanoGray™ to restore your hair's natural colour from the root — without dye.</p>
+    <div class="best-tags">
+      <span class="best-tag">2% Greyverse™</span><span class="best-tag">1% Darkenyl™</span><span class="best-tag">2% MelanoGray™</span><span class="best-tag">He Shou Wu</span><span class="best-tag">CoQ10</span>
+    </div>
+    <button class="best-cta" onclick="window.open('https://www.regensify.com/products/regensify-hair-melanin-booster-lotion','_blank')">Shop now — SGD $39.50</button>
+  </div>
+  <div class="best-right">
+    <img src="https://cdn.shopify.com/s/files/1/0719/2972/5125/files/Front-Set.jpg?v=1751397072" alt="Hair Melanin Booster Lotion">
+    <div class="best-price">SGD $39.50 · 50 ml</div>
+  </div>
+</div>
+<section class="steps-section">
+  <div class="section-eyebrow">The complete haircare system</div>
+  <div class="section-title">Four steps to regensify</div>
+  <p class="section-sub">Each step works synergistically with the next for maximum results.</p>
+  <div class="steps-grid">
+    <div class="step"><div class="step-num">1</div><h4>Cleanse</h4><p>DHT Blocking Shampoo with Adenosine and Saw Palmetto removes buildup while blocking follicle-damaging DHT.</p></div>
+    <div class="step"><div class="step-num">2</div><h4>Condition</h4><p>Hair Regrowth Conditioner with CoQ10 and Ecklonia Cava nourishes and primes the scalp for regrowth.</p></div>
+    <div class="step"><div class="step-num">3</div><h4>Treat</h4><p>Redensifying Hair Regrowth Serum with Redensyl activates dormant follicles and accelerates the growth phase.</p></div>
+    <div class="step"><div class="step-num">4</div><h4>Nourish</h4><p>Redensifying Hair Nutrition with AnaGain™ Nu supports hair density from within at the cellular level.</p></div>
+  </div>
+</section>
+<section class="science">
+  <div class="section-eyebrow">The science behind it</div>
+  <div class="section-title">Actives that actually work</div>
+  <p class="section-sub">Every ingredient earns its place. No fillers, no greenwashing — just clinical evidence.</p>
+  <div class="science-grid">
+    <div class="sci-card"><div class="sci-pill">Hair regrowth</div><h4>Redensyl®</h4><p>Targets hair follicle stem cells to reactivate the growth cycle. Clinically proven to reduce hair loss in 84 days.</p></div>
+    <div class="sci-card"><div class="sci-pill">Anti-grey</div><h4>Greyverse™</h4><p>A peptide complex that neutralises hydrogen peroxide build-up in the follicle — the primary cause of premature greying.</p></div>
+    <div class="sci-card"><div class="sci-pill">Lashes and brows</div><h4>Capixyl™</h4><p>Biomimetic peptide + red clover extract. Clinically shown to increase lash length and density by up to 34%.</p></div>
+    <div class="sci-card"><div class="sci-pill">Oral nutrition</div><h4>AnaGain™ Nu</h4><p>From organic pea sprouts — signals follicles to shift from resting to growing phase, reducing daily shedding.</p></div>
+  </div>
+</section>
+<section class="bundles-section" id="bundles">
+  <div class="section-eyebrow">Save more together</div>
+  <div class="section-title">Bundle deals</div>
+  <p class="section-sub">Pair products that work synergistically — and save while you do it.</p>
+  <div class="bundle-row">
+    <div class="bundle-card" onclick="window.open('https://www.regensify.com/products/regensify-professional-bundle-set','_blank')">
+      <img src="https://cdn.shopify.com/s/files/1/0719/2972/5125/files/Professional_Bundle_Set.jpg?v=1751208491" alt="Professional Bundle">
+      <div class="bundle-body"><div class="bundle-name">Professional Bundle Set</div><div class="bundle-desc">DHT Blocking Shampoo + Hair Regrowth Conditioner. The essential scalp duo.</div><div class="bundle-footer"><div class="bundle-price">SGD $65.00</div><span class="bundle-save">Save SGD $4</span></div><button class="bundle-btn">Shop this bundle</button></div>
+    </div>
+    <div class="bundle-card" onclick="window.open('https://www.regensify.com/products/regensify-hair-melanin-booster-bundle','_blank')">
+      <img src="https://cdn.shopify.com/s/files/1/0719/2972/5125/files/Bundle.jpg?v=1751397454" alt="Melanin Bundle">
+      <div class="bundle-body"><div class="bundle-name">Hair Melanin Booster Bundle</div><div class="bundle-desc">Melanin Lotion 50ml + Nutrition 90 caps. The ultimate anti-grey inside-out duo.</div><div class="bundle-footer"><div class="bundle-price">SGD $96.00</div><span class="bundle-save">Save SGD $3</span></div><button class="bundle-btn">Shop this bundle</button></div>
+    </div>
+    <div class="bundle-card" onclick="window.open('https://www.regensify.com/products/regensify-full-professional-bundle-set','_blank')">
+      <img src="https://cdn.shopify.com/s/files/1/0719/2972/5125/files/FullBundleSet.jpg?v=1751212473" alt="Full Bundle">
+      <div class="bundle-body"><div class="bundle-name">Full Professional Bundle</div><div class="bundle-desc">Shampoo + Conditioner + Serum. The complete system — best value.</div><div class="bundle-footer"><div class="bundle-price">SGD $96.00</div><span class="bundle-save">Save SGD $9</span></div><button class="bundle-btn">Shop this bundle</button></div>
+    </div>
+  </div>
+</section>
+<section class="services" id="clinic">
+  <div class="section-eyebrow">REGENSIFY clinic</div>
+  <div class="section-title">Beyond the bottle</div>
+  <p class="section-sub">Advanced in-clinic treatments for professional-grade results.</p>
+  <div class="svc-grid">
+    <div class="svc-card" onclick="window.open('https://www.regensify.com/products/regenera-activa','_blank')"><div class="svc-badge">Regenerative treatment</div><h4>Regenera Activa</h4><p>Uses your own scalp tissue (autologous micro-grafts) to stimulate hair growth and improve density. Long-term regenerative effects from a single session.</p><div class="svc-cta">Learn more and book →</div></div>
+    <div class="svc-card" onclick="window.open('https://www.regensify.com/products/plinest-hair-loss-treatment-regensify-clinic','_blank')"><div class="svc-badge">Biostimulator injectable</div><h4>PLINEST Hair</h4><p>Highly purified PN polynucleotide gel — a clinically acclaimed injectable for scalp regeneration and follicle strengthening at the cellular level.</p><div class="svc-cta">Learn more and book →</div></div>
+  </div>
+</section>
+<section class="testimonial">
+  <div class="test-stars">★★★★★</div>
+  <div class="test-quote">"I've been using the Hair Melanin Booster bundle for 3 months and my grey hairs have visibly reduced. I wish I found REGENSIFY sooner."</div>
+  <div class="test-author">Verified customer · Singapore · via Regensify.com</div>
+</section>
+<div class="newsletter">
+  <div class="nl-text">
+    <h3>Join the REGENSIFY community</h3>
+    <p>Get the latest updates, exclusive deals, and our livestream schedule. Join 1,000+ subscribers on our Telegram channel.</p>
+  </div>
+  <div>
+    <div class="nl-form">
+      <input type="email" placeholder="your@email.com">
+      <button onclick="this.textContent='Subscribed ✓';this.style.background='#3d5a3e'">Subscribe</button>
+    </div>
+    <p style="font-size:10px;color:rgba(255,255,255,.25);margin-top:10px">No spam. Unsubscribe anytime.</p>
+  </div>
+</div>
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="f-logo">REGENSIFY</div>
+      <p class="f-tagline">REGENSIFY Pte Ltd (ACRA 202011992K) · Singapore<br>Advanced formulations for cosmetic rejuvenation and supplemental health since 2020.<br><br>+65 8237 7167 · sales@regensify.com</p>
+      <div class="social-row">
+        <a class="social-btn" href="https://www.instagram.com/regensify" target="_blank">IG</a>
+        <a class="social-btn" href="https://www.facebook.com/regensify" target="_blank">FB</a>
+        <a class="social-btn" href="https://www.tiktok.com/@regensify" target="_blank">TK</a>
+        <a class="social-btn" href="https://www.youtube.com/@regensify" target="_blank">YT</a>
+        <a class="social-btn" href="https://t.me/regensify" target="_blank">TG</a>
+        <a class="social-btn" href="https://api.whatsapp.com/message/4BS3ENNWRQSJN1" target="_blank">WA</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Products</h5>
+      <a href="https://www.regensify.com/collections/regensify-haircare-collection" target="_blank">Haircare</a>
+      <a href="https://www.regensify.com/collections/regensify-bodycare-collection" target="_blank">Bodycare</a>
+      <a href="https://www.regensify.com/collections/regensify-eyecare-collection" target="_blank">Eyecare</a>
+      <a href="https://www.regensify.com/collections/regensify-bundles" target="_blank">Bundles</a>
+      <a href="https://www.regensify.com/collections/all-services" target="_blank">Clinic services</a>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <a href="https://www.regensify.com/pages/our-story" target="_blank">Our story</a>
+      <a href="https://www.regensify.com/pages/media-and-testimonials" target="_blank">Media and testimonials</a>
+      <a href="https://www.regensify.com/pages/regensify-blog" target="_blank">Blog</a>
+      <a href="https://www.regensify.com/pages/contact" target="_blank">Contact us</a>
+    </div>
+    <div class="footer-col">
+      <h5>Help</h5>
+      <a href="https://www.regensify.com/pages/faqs" target="_blank">FAQs</a>
+      <a href="https://www.regensify.com/pages/shipping-policy" target="_blank">Shipping policy</a>
+      <a href="https://www.regensify.com/pages/return-refund" target="_blank">Returns and refunds</a>
+      <a href="https://www.regensify.com/pages/payment-methods" target="_blank">Payment methods</a>
+      <a href="https://www.regensify.com/pages/privacy-policy" target="_blank">Privacy policy</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 REGENSIFY Pte Ltd · Singapore · All rights reserved</p>
+    <div class="payment-icons">
+      <span class="pay-badge">Visa</span><span class="pay-badge">Mastercard</span><span class="pay-badge">PayNow</span><span class="pay-badge">GrabPay</span><span class="pay-badge">Atome</span>
+    </div>
+  </div>
+</footer>
+<script>
+const P=[
+  {n:"DHT Blocking Shampoo",p:"33.50",c:"hair",i:"https://cdn.shopify.com/s/files/1/0719/2972/5125/files/Shampoo-Front.jpg?v=1752453802",g:"Saw Palmetto · Ecklonia Cava · Adenosine · Biotin",u:"https://www.regensify.com/products/regensify-dht-blocking-shampoo",b:"",bc:""},
+  {n:"Hair Regrowth Conditioner",p:"35.50",c:"hair",i:"https://cdn.shopify.com/s/files/1/0719/2972/5125/files/Conditioner-Front.jpg?v=1751198714",g:"Adenosine · CoQ10 · Saw Palmetto · Biotin",u:"https://www.regensify.com/products/regensify-hair-regrowth-conditioner",b:"",bc:""},
+  {n:"Hair Regrowth Serum 60ml",p:"35.50",c:"hair",i:"https://cdn.shopify.com/s/files/1/0719/2972/5125/files/Serum01.jpg?v=1751202699",g:"Redensyl · Ecklonia Cava · Centella Asiatica · CoQ10",u:"https://www.regensify.com/products/regensify-redensifying-hair-regrowth-serum",b:"Low stock",bc:"amber"},
+  {n:"Redensifying Hair Nutrition",p:"48.00",c:"hair",i:"https://cdn.shopify.com/s/files/1/0719/2972/5125/files/Main-redensifyinghairnutrition.jpg?v=1751372724",g:"AnaGain™ Nu · DHT Blockers · Biotin · Zinc",u:"https://www.regensify.com/products/regensify-redensifying-hair-nutrition",b:"",bc:""},
+  {n:"Hair Melanin Booster Lotion",p:"39.50",c:"hair",i:"https://cdn.shopify.com/s/files/1/0719/2972/5125/files/Front-Set.jpg?v=1751397072",g:"Greyverse™ · Darkenyl™ · MelanoGray™ · CoQ10",u:"https://www.regensify.com/products/regensify-hair-melanin-booster-lotion",b:"#1 seller",bc:""},
+  {n:"Hair Melanin Booster Nutrition",p:"59.50",c:"hair",i:"https://cdn.shopify.com/s/files/1/0719/2972/5125/files/main.jpg?v=1751398885",g:"Melatine · Tyrosine · Catalase · Adenosine · CoQ10",u:"https://www.regensify.com/products/regensify-hair-melanin-booster-nutrition",b:"",bc:""},
+  {n:"Eyelash and Eyebrow Serum",p:"22.50",c:"eye",i:"https://cdn.shopify.com/s/files/1/0719/2972/5125/files/Pic01.jpg?v=1751274082",g:"Capixyl 5% · Redensyl · Adenosine · Hyaluronic Acid",u:"https://www.regensify.com/products/regensify-eyelash-and-eyebrow-serum",b:"",bc:""},
+  {n:"Body Wash 500ml",p:"22.50",c:"body",i:"https://cdn.shopify.com/s/files/1/0719/2972/5125/files/BodyWash-Front.jpg?v=1751290838",g:"1% Salicylic Acid · Niacinamide · CoQ10 · Vitamin E",u:"https://www.regensify.com/products/regensify-body-wash",b:"",bc:""},
+  {n:"Extra Cool Body Wash",p:"24.00",c:"body",i:"https://cdn.shopify.com/s/files/1/0719/2972/5125/files/ExtraCoolBodyWash-Front.jpg?v=1751336927",g:"Menthol · Salicylic Acid · Niacinamide · Vitamin E",u:"https://www.regensify.com/products/regensify-extra-cool-body-wash",b:"New",bc:"green"},
+  {n:"Professional Bundle Set",p:"65.00",c:"bundle",i:"https://cdn.shopify.com/s/files/1/0719/2972/5125/files/Professional_Bundle_Set.jpg?v=1751208491",g:"Shampoo 500ml + Conditioner 500ml",u:"https://www.regensify.com/products/regensify-professional-bundle-set",b:"Bundle",bc:""},
+  {n:"Full Professional Bundle",p:"96.00",c:"bundle",i:"https://cdn.shopify.com/s/files/1/0719/2972/5125/files/FullBundleSet.jpg?v=1751212473",g:"Shampoo + Conditioner + Serum — save SGD $9",u:"https://www.regensify.com/products/regensify-full-professional-bundle-set",b:"Best value",bc:"green"},
+  {n:"Regrowth Serum Bundle",p:"96.00",c:"bundle",i:"https://cdn.shopify.com/s/files/1/0719/2972/5125/files/SerumBundle01.jpg?v=1751242270",g:"3× Hair Regrowth Serum 60ml",u:"https://www.regensify.com/products/regensify-regrowth-serum-bundle-set",b:"Low stock",bc:"amber"},
+  {n:"Hair Melanin Booster Bundle",p:"96.00",c:"bundle",i:"https://cdn.shopify.com/s/files/1/0719/2972/5125/files/Bundle.jpg?v=1751397454",g:"Melanin Lotion 50ml + Nutrition 90 caps",u:"https://www.regensify.com/products/regensify-hair-melanin-booster-bundle",b:"Bundle",bc:""},
+];
+const CL={all:'All products',hair:'Haircare',body:'Bodycare',eye:'Eyecare',bundle:'Bundles'};
+function renderProds(f){
+  const list=f==='all'?P:P.filter(x=>x.c===f);
+  document.getElementById('prod-section-title').textContent=CL[f]||'Products';
+  document.getElementById('prod-grid').innerHTML=list.map(x=>`
+    <div class="prod-card" onclick="window.open('${x.u}','_blank')">
+      <div class="prod-img-wrap">
+        <img src="${x.i}" alt="${x.n}" loading="lazy">
+        ${x.b?`<div class="prod-badge ${x.bc}">${x.b}</div>`:''}
+      </div>
+      <div class="prod-body">
+        <div class="prod-cat">${CL[x.c]||x.c}</div>
+        <div class="prod-name">${x.n}</div>
+        <div class="prod-ingr">${x.g}</div>
+        <div class="prod-footer">
+          <div class="prod-price">SGD $${x.p}</div>
+          <button class="prod-add" onclick="event.stopPropagation();window.open('${x.u}','_blank')">Shop now</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+function filterCat(f){
+  document.querySelectorAll('.cat-card').forEach(c=>c.classList.remove('active'));
+  const el=document.getElementById('cat-'+f);
+  if(el)el.classList.add('active');
+  renderProds(f);
+  setTimeout(()=>document.getElementById('products').scrollIntoView({behavior:'smooth'}),50);
+}
+renderProds('all');
+</script>
+</body>
+</html>
